@@ -35,6 +35,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    #Apps instaladas
+    "apps.articulos",
+    "apps.comentarios",
+    "apps.usuarios",
 ]
  
 MIDDLEWARE = [
@@ -52,7 +56,7 @@ ROOT_URLCONF = 'proyecto_final_informatorio.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'proyecto_final_informatorio', 'templates')],
+        'DIRS': [ BASE_DIR / "templates"],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
