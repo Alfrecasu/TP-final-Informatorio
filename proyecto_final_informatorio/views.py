@@ -2,4 +2,11 @@ from django.shortcuts import render
 
 def index(request):
     template_name = 'index.html'
-    return render(request, template_name)
+    context = {'nombre': 'Informatorio'}
+    return render(request, template_name, context)
+
+def contacto(request):
+    template_name = 'contacto.html'
+    nombres = ['Informatorio', 'Grupo 6', 'Alfre'] #En caso de pasar una lista de nombres -> camiar en contactos 
+    context = {'nombres': nombres}
+    return render(request, template_name, context)

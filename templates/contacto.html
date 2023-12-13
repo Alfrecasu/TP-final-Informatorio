@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block Título %} 
+<title>contacto #dinamico</title>
+{% endblock %}
+
+{% block contenido%}
+<p>El Grupo 6 lo saluda desde el contacto</p>
+<ul>
+{% for nombre in nombres %}
+    <li>{{nombre}}</li>
+{% endfor %}
+</ul>
+
+{% endblock %}

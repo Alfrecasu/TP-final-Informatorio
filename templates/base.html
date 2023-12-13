@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="es-ar">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block Título %} {% endblock %}
+</head>
+
+<body>
+    {% include 'navegacion.html' %}
+    <h1>El grupo 6 lo saluda desde la base</h1>
+    {% block contenido %} {% endblock %}
+    <h2>Esta también es la base del Grupo 6</h2>
+</body>
+
+</html>
