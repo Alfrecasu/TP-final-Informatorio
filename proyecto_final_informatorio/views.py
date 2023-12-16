@@ -7,6 +7,6 @@ def index(request):
 
 def contacto(request):
     template_name = 'contacto.html'
-    nombres = ['Informatorio', 'Grupo 6', 'Alfre'] #En caso de pasar una lista de nombres -> cambiar en contactos 
+    nombres = ['Informatorio', 'Grupo 6', 'Alfre Casu', 'Matias Melga'] #En caso de pasar una lista de nombres -> cambiar en contactos 
     context = {'nombres': nombres}
     return render(request, template_name, context)

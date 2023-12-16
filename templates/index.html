@@ -1,11 +1,21 @@
 {% extends 'base.html' %}
+{% load static %}
 
-{% block Título %} 
-<title>index #dinamico</title>
+{% block titulo %} 
+<title>Inicio #dinamico</title>
+{% endblock %}
+
+{% block navegacion %}
+{% include 'navegacion.html' %}
 {% endblock %}
 
 {% block contenido%}
+<div class = 'card'>
+    <img class ='card-img' src="{% static 'img/herramientas-practicar-programacion.jpg' %}" alt="portada" style="width: 75%; align-self: center;">
+</div>
+
 <p>El Grupo 6 lo saluda desde el index</p>
 <p>{{nombre}}</p>
+
 {% endblock %}
 
