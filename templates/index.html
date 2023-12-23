@@ -9,13 +9,57 @@
 {% include 'navegacion.html' %}
 {% endblock %}
 
-{% block contenido%}
+{% block contenido %}
 <div class = 'card'>
-    <img class ='card-img' src="{% static 'img/herramientas-practicar-programacion.jpg' %}" alt="portada" style="width: 75%; align-self: center;">
+    <img class ='card-img' src="{% static 'img/portada.jpg' %}" alt="portada" style="width: 75%; align-self: center;">
 </div>
-
-<p>El Grupo 6 lo saluda desde el index</p>
 <p>{{nombre}}</p>
+<div style="margin-top: 50 px; margin-bottom: 50px;">
+    <h1 style="text-align: center; font-family:Arial, Helvetica, sans-serif;">Herrmientas y recursos para desarrolladores</h1>
+    <p style="margin-left: 100px; margin-right: 50px; font-family:Arial, Helvetica, sans-serif;"> El Grupo 6 lo saluda desde el index y presenta su primer página web, como parte del Proyecto Final de la segunda etapa del Informatorio 2023</p>
+</div>
+<section>
+    <div class="container">
+        <div id="carouselExampleIndicators" class="carousel slide">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
+                    aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+                    aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
+                    aria-label="Slide 3"></button>
+            </div>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <div class="card-img-top" style="display: block; width: 50%; margin: auto;">
+                        <img src="{% static 'img/portada.jpg' %}" class="card-img-top w-75">
+                    </div>
+                </div>
+                <div class="carousel-item s">
+                    <div class="card-img-top" style="display: block; width: 50%; margin: auto;">
+                        <img src="{% static 'img/portada.jpg' %}" class="card-img-top w-75">
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="card-img-top" style="display: block; width: 50%; margin: auto;">
+                        <img src="{% static 'img/portada.jpg' %}" class="card-img-top w-75">
+                    </div>
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+                data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Anterior</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+                data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Siguiente</span>
+            </button>
+        </div>
+    </div>
+</section>
+    
 
 {% endblock %}
 

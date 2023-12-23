@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block titulo %}
+<title>Inicio de sesión</title>
+{% endblock %}
+
+{% block navegacion %}
+{% include 'navegacion.html' %}
+{% endblock %}
+
+{% block contenido %}
+<form method="post">{% csrf_token %}
+    {{ form.as_p}}
+    <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
+</form>
+{% endblock %}

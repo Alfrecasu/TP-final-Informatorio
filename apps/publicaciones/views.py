@@ -1,10 +1,12 @@
 from typing import Any
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.urls import reverse_lazy,reverse
 from django.db.models.query import QuerySet
 from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect
-from django.views.generic.edit import CreateView, UpdateView, DeleteView
+
 from django.views.generic import ListView, DetailView
-from django.urls import reverse_lazy,reverse
+
 
 from .models import Categoria, Publicaciones
 from apps.comentarios.models import Comentario

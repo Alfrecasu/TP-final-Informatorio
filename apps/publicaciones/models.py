@@ -29,8 +29,7 @@ class Publicaciones(models.Model):
     class Meta:
         ordering = ('-publicado',)
     
-    def __str__(self, using = None, keep_parents =False):
-        self.imagen.delete(self.imagen.name)
-        super().delete()
+    def __str__(self):
+        return self.titulo
 
 
