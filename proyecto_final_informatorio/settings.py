@@ -29,7 +29,7 @@ DEBUG = True
 ALLOWED_HOSTS = []
 #
 AUTH_USER_MODEL = 'usuarios.Usuarios'
-
+#
 LOGIN_URL = reverse_lazy('apps.usuarios:iniciar_sesion')
 LOGIN_REDIRECT_URL = reverse_lazy('inicio')
 LOGOUT_REDIRECT_URL = reverse_lazy('inicio')
@@ -127,6 +127,7 @@ STATICFILES_DIRS = [
      BASE_DIR / "static",
 ]
 STATIC_ROOT = BASE_DIR / "staticfiles"
+
 MEDIA_URL = "media/"
 MEDIA_ROOT = BASE_DIR / "media"
 

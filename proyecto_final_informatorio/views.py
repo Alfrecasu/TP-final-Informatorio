@@ -10,3 +10,5 @@ def contacto(request):
     nombres = ['Informatorio', 'Grupo 6', 'Alfre Casu', 'Matias Melga'] #En caso de pasar una lista de nombres -> cambiar en contactos 
     context = {'nombres': nombres}
     return render(request, template_name, context)
+
+

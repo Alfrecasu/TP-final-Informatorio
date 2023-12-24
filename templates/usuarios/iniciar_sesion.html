@@ -11,7 +11,8 @@
 
 {% block contenido %}
 <form method="post">{% csrf_token %}
-    {{ form.as_p}}
+    <div class="mb-3">
+        {{ form.as_p}}
     <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
 </form>
 {% endblock %}

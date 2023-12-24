@@ -1,17 +1,14 @@
-from typing import Any
+from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy,reverse
 from django.db.models.query import QuerySet
-from django.shortcuts import render, redirect
+from typing import Any
 from django.http import HttpResponseRedirect
-
 from django.views.generic import ListView, DetailView
-
 
 from .models import Categoria, Publicaciones
 from apps.comentarios.models import Comentario
 from apps.comentarios.forms import OpinionForm
-
 
 # Create your views here.
 
@@ -23,8 +20,8 @@ class AgregarCategoria(CreateView):
 
 class AgregarPublicacion(CreateView):
     model = Publicaciones
-    fiels = ['titulo','subtitulo', 'fecha','texto', 'activo', 'categoria', 'imagen', 'publicado']
-    template_name = 'publicaciones/agregar_publicaciones.html'
+    fields = ['titulo','subtitulo', 'nota','fecha','texto', 'activo', 'categoria', 'imagen']
+    template_name = 'publicaciones/agregar_publicacion.html'
     success_url = reverse_lazy('inicio')
 
     def form_valid(self,form):
@@ -39,7 +36,7 @@ class ModificarPublicacion(UpdateView):
 
 class ListarPublicacion(ListView):
     model = Publicaciones
-    template_name = 'publicaciones/listar_publicaciones.html'
+    template_name = 'publicaciones/listar_publicacion.html'
     context_object_name = 'publicaciones'
     paginate_by = 3
 
