@@ -31,7 +31,7 @@ class AgregarPublicacion(CreateView):
 class ModificarPublicacion(UpdateView):
     model = Publicaciones
     fields = ['titulo','subtitulo', 'fecha','texto', 'activo', 'categoria', 'imagen', 'publicado']
-    template_name = 'publicaciones/agregar_publicacion.html'
+    template_name = 'publicaciones/modificar_publicacion.html'
     success_url = reverse_lazy('inicio')
 
 class ListarPublicacion(ListView):
@@ -52,7 +52,7 @@ class ListarPublicacion(ListView):
 
         if query:
             queryset = queryset.filter(titulo__icontains = query)
-        return queryset.order_by('fecha')
+        return queryset.order_by('titulo')
 
 class EliminarPublicacion(DeleteView):
     model = Publicaciones
@@ -78,7 +78,7 @@ def publicacion_detalle(request,id):
     contexto = {
         'publicacion': publicacion,
         'form': form,
-        'ocomentarios': comentarios
+        'comentarios': comentarios
     }
     template_name = 'publicaciones/publicacion_detalle.html'
     return render(request,template_name,contexto)
@@ -88,7 +88,7 @@ def listar_por_categoria(request, categoria):
     categoria = Categoria.objects.filter(nombre = categoria)
     publicaciones = Publicaciones.objects.filter(categoria = categoria[0].id).order_by('fecha_agregado')
     categorias = Categoria.objects.all()
-    template_name = 'publicaciones/listar_publicaciones.html'
+    template_name = 'publicaciones/listar_publicacion.html'
     contexto = {
         'publicaciones' : publicaciones,
         'categorias' : categorias        
@@ -102,13 +102,13 @@ def ordenar_por(request):
     orden = request.GET.get('orden', '')
     #Validar lo que contiene Value
     if orden == 'fecha':
-        publicaciones = Publicaciones.objects.order_by('fecha_agregado')
+        publicaciones = Publicaciones.objects.order_by('fecha')
     elif orden == 'titulo':
         publicaciones = Publicaciones.objects.order_by('titulo')
     else:
-        Publicaciones = Publicaciones.objects.all()
+        publicaciones = Publicaciones.objects.all()
     categorias = Categoria.objects.all()
-    template_name = 'publicaciones/listar_publicaciones.html'
+    template_name = 'publicaciones/listar_publicacion.html'
     contexto = {
         'publicaciones' : publicaciones,
         'categorias' : categorias,

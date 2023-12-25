@@ -24,14 +24,14 @@ class Publicaciones(models.Model):
     imagen = models.ImageField(null=True, blank=True, upload_to='media', default='static/post_default.png')
     publicado = models.DateTimeField(default=timezone.now)
     
-    '''def get_default_categoria():
+    def get_default_categoria():
         return Categoria.objects.get_or_create(nombre='Sin Categoría')[0]
-    '''
+    
     def __str__(self):
         return self.titulo
 
     class Meta:
-        ordering = ('-fecha',)
+        ordering = ('fecha',)
     
    
 

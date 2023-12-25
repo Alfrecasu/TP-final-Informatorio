@@ -52,10 +52,10 @@
                 </li>
                 
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'apps.publicaciones:listar_publicaciones' %}">Publicaciones</a>
+                    <a class="nav-link" href="{% url 'apps.publicaciones:listar_publicacion' %}">Publicaciones</a>
                 </li>
             </ul>
-            <form class="d-flex" role="search" method="get" action="{% url 'apps.publicaciones:listar_publicaciones' %}">
+            <form class="d-flex" role="search" method="get" action="{% url 'apps.publicaciones:listar_publicacion' %}">
                 <input class="form-control me-2" type="search" placeholder="Buscar publicacion por titulo" aria-label="Search"
                     name="buscador">
                 <button class="btn btn-outline-success" type="submit">Buscar</button>
