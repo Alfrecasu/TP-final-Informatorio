@@ -1,0 +1,80 @@
+{% load static %}
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+        <a href="{% url 'inicio' %}">
+            <img src="{% static 'img/logo.png' %}" alt="logo" class="rounded-circle flex-shrink-0">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+                {% if user.is_authenticated %}
+                <a class="navbar-brand" href="#">
+                    <img src="{{user.imagen.url}}" alt="perfil" width="50" height="50"
+                        class="rounded-circle flex-shrink-0">
+                </a>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        {{user.username}}
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item"
+                                href="{% url 'apps.usuarios:actualizar_usuario' user.pk %}">Modificar perfil</a></li>
+                        <li><a class="dropdown-item" href="{% url 'apps.usuarios:cerrar_sesion' %}">Cerrar sesión</a>
+                        </li>
+                        {% if user.es_colaborador %}
+                        <li><a class="dropdown-item" href="{% url 'apps.publicaciones:agregar_publicacion' %}">Agregar Publicación</a></li>
+                        <li><a class="dropdown-item" href="{% url 'apps.publicaciones:agregar_categoria' %}">Agregar Categoría</a></li>
+                        <li><a class="dropdown-item" href="{% url 'apps.usuarios:listar_usuarios' %}">Listar usuarios</a></li>
+                        {% endif %}
+                    </ul>
+                </li>
+                {% else %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'apps.usuarios:registrar' %}">Registrarse</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'apps.usuarios:iniciar_sesion' %}">Iniciar sesión</a>
+                </li>
+                {% endif %}
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{% url 'inicio' %}">Inicio</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'contacto' %}">Contacto</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'apps.publicaciones:listar_publicacion' %}">Álbums</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'apps.pulicaciones:listar_publicaciones' %}">Publicaciones</a>
+                </li>
+                <form method="GET" action="{% url 'apps.publicaciones:ordenar_por' %}">
+                    <button class="btn btn-secondary" name="orden" type="submit" value="fecha">Ordenar por fecha</button>
+                    <button class="btn btn-secondary" name="orden" type="submit" value="titulo">Ordenar por título</button>
+                </form>
+                
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="{% url 'apps.publicaciones:listar_publicaciones' %}">Todos</a></li>
+                    {% for i in categorias %}
+                    {% if i.imagen %}
+                    <li><a class="dropdown-item" href="{% url 'apps.publicaciones:listar_por_categoria' i.nombre %}"><img
+                                src="{{ i.imagen.url }}" style="width: 15%; height: 15%;" alt="">{{i.nombre}}</a>
+                    </li>
+                    {% endif %}
+                    {% endfor %}
+                </ul>
+            </ul>
+            <form class="d-flex" role="search" method="get" action="{% url 'apps.publicaciones:listar_publicaciones' %}">
+                <input class="form-control me-2" type="search" placeholder="Buscar publicación por titulo" aria-label="Search"
+                    name="buscador">
+                <button class="btn btn-outline-success" type="submit">Buscar</button>
+            </form>
+
+        </div>
+    </div>
+</nav>

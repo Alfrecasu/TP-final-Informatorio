@@ -31,7 +31,7 @@ class Publicaciones(models.Model):
         return self.titulo
 
     class Meta:
-        ordering = ('-publicado',)
+        ordering = ('-fecha',)
     
    
 
