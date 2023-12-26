@@ -60,8 +60,8 @@ class EliminarPublicacion(DeleteView):
     success_url = reverse_lazy('inicio')
 
 def publicacion_detalle(request,id):
-    publicaciones = Publicaciones.objects.get(id=id)
-    comentarios = Comentarios.objects.filter(publicacion=id)
+    publicacion = Publicaciones.objects.get(id=id)
+    comentarios = Comentario.objects.filter(publicacion=id)
     form = OpinionForm(request.POST)
 
     if form.is_valid():
@@ -80,7 +80,7 @@ def publicacion_detalle(request,id):
         'form': form,
         'comentarios': comentarios
     }
-    template_name = 'publicaciones/publicacion_detalle.html'
+    template_name = 'publicaciones/detalle_publicacion.html'
     return render(request,template_name,contexto)
 
 
@@ -102,11 +102,11 @@ def ordenar_por(request):
     orden = request.GET.get('orden', '')
     #Validar lo que contiene Value
     if orden == 'fecha':
-        publicaciones = Publicaciones.objects.order_by('fecha')
+        publicacion = Publicaciones.objects.order_by('fecha')
     elif orden == 'titulo':
-        publicaciones = Publicaciones.objects.order_by('titulo')
+        publicacion = Publicaciones.objects.order_by('titulo')
     else:
-        publicaciones = Publicaciones.objects.all()
+        publicacion = Publicaciones.objects.all()
     categorias = Categoria.objects.all()
     template_name = 'publicaciones/listar_publicacion.html'
     contexto = {
