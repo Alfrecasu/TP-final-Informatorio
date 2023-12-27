@@ -15,23 +15,21 @@ class Categoria(models.Model):
 class Publicaciones(models.Model):
     titulo = models.CharField(max_length=100, null=False)
     subtitulo = models.CharField(max_length=100, null=True, blank=True)
-    nota = models.TextField()
     fecha = models.DateTimeField(default=timezone.now, blank = True)
     texto = models.TextField(null = False)
     activo = models.BooleanField(default=True)
     colaborador = models.ForeignKey(Usuarios, on_delete=models.SET_NULL, null=True,default=2)
     categoria = models.ForeignKey(Categoria, on_delete=models.SET_NULL, null=True, default=None)
     imagen = models.ImageField(null=True, blank=True, upload_to='media', default='static/post_default.png')
-    publicado = models.DateTimeField(default=timezone.now)
+
     
-    def get_default_categoria():
-        return Categoria.objects.get_or_create(nombre='Sin Categoría')[0]
+    
     
     def __str__(self):
         return self.titulo
 
     class Meta:
-        ordering = ('fecha',)
+        ordering = ('-fecha',)
     
    
 

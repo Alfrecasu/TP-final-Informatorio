@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from django.urls import reverse_lazy,reverse
+from django.urls import reverse_lazy, reverse
 from django.db.models.query import QuerySet
 from typing import Any
 from django.http import HttpResponseRedirect
@@ -15,12 +15,12 @@ from apps.comentarios.forms import OpinionForm
 class AgregarCategoria(CreateView):
     model = Categoria
     fields = ['nombre']
-    template_name = 'publicaciones/agregar_categoria.html'
+    template_name = 'categoria/agregar_categoria.html'
     success_url = reverse_lazy('inicio')
 
 class AgregarPublicacion(CreateView):
     model = Publicaciones
-    fields = ['titulo','subtitulo', 'nota','fecha','texto', 'activo', 'categoria', 'imagen']
+    fields = ['titulo','subtitulo', 'fecha', 'texto', 'activo', 'categoria', 'imagen']
     template_name = 'publicaciones/agregar_publicacion.html'
     success_url = reverse_lazy('inicio')
 
@@ -30,8 +30,8 @@ class AgregarPublicacion(CreateView):
 
 class ModificarPublicacion(UpdateView):
     model = Publicaciones
-    fields = ['titulo','subtitulo', 'fecha','texto', 'activo', 'categoria', 'imagen', 'publicado']
-    template_name = 'publicaciones/modificar_publicacion.html'
+    fields = ['titulo','subtitulo','fecha', 'texto', 'activo', 'categoria', 'imagen']
+    template_name = 'publicaciones/agregar_publicacion.html'
     success_url = reverse_lazy('inicio')
 
 class ListarPublicacion(ListView):
@@ -59,6 +59,7 @@ class EliminarPublicacion(DeleteView):
     template_name = 'publicaciones/confirma_eliminar.html'
     success_url = reverse_lazy('inicio')
 
+#Vista para poder leer el contenido 
 def publicacion_detalle(request,id):
     publicacion = Publicaciones.objects.get(id=id)
     comentarios = Comentario.objects.filter(publicacion=id)
@@ -70,7 +71,7 @@ def publicacion_detalle(request,id):
             aux.publicacion = publicacion
             aux.usuario = request.user
             aux.save()
-            detalle_url = reverse('apps.publicaciones:detalle_publicacion', kwargs={'id': publicacion.id})
+            detalle_url = reverse('apps.publicaciones:publicacion_detalle', kwargs={'id': publicacion.id})
             return HttpResponseRedirect(detalle_url)
         else:
             return redirect('apps.usuarios:iniciar_sesion')
@@ -80,18 +81,18 @@ def publicacion_detalle(request,id):
         'form': form,
         'comentarios': comentarios
     }
-    template_name = 'publicaciones/detalle_publicacion.html'
+    template_name = 'publicaciones/publicacion_detalle.html'
     return render(request,template_name,contexto)
 
 
 def listar_por_categoria(request, categoria):
     categoria = Categoria.objects.filter(nombre = categoria)
-    publicaciones = Publicaciones.objects.filter(categoria = categoria[0].id).order_by('fecha_agregado')
+    publicaciones = Publicaciones.objects.filter(categoria = categoria[0].id).order_by('fecha')
     categorias = Categoria.objects.all()
     template_name = 'publicaciones/listar_publicacion.html'
     contexto = {
-        'publicaciones' : publicaciones,
-        'categorias' : categorias        
+        'publicacion' : publicaciones,
+        'categorias' : categorias,
     }
     return render(request,template_name,contexto)
 
@@ -110,7 +111,7 @@ def ordenar_por(request):
     categorias = Categoria.objects.all()
     template_name = 'publicaciones/listar_publicacion.html'
     contexto = {
-        'publicaciones' : publicaciones,
+        'publicacion' : publicacion,
         'categorias' : categorias,
     }
     return render(request, template_name, contexto)

@@ -29,10 +29,8 @@
                         </li>
                         {% if user.es_colaborador %}
                         <li><a class="dropdown-item" href="{% url 'apps.publicaciones:agregar_publicacion' %}">Agregar publicaciones</a></li>
-                        <li><a class="dropdown-item" href="{% url 'apps.publicaciones:agregar_categoria' %}">Agregar
-                                categoria</a></li>
-                        <li><a class="dropdown-item" href="{% url 'apps.usuarios:listar_usuarios' %}">Listar
-                                usuarios</a></li>
+                        <li><a class="dropdown-item" href="{% url 'apps.publicaciones:agregar_categoria' %}">Agregar categoria</a></li>
+                        <li><a class="dropdown-item" href="{% url 'apps.usuarios:listar_usuarios' %}">Listar usuarios</a></li>
                         {% endif %}
                     </ul>
                 </li>

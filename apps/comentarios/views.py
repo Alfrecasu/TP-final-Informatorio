@@ -26,7 +26,7 @@ class ModificarComentario(LoginRequiredMixin, UpdateView):
     template_name = 'comentarios/modificar_comentario.html'
 
     def get_success_url(self):
-        detalle_url = reverse('apps.publicaciones:detalle_publicaciones', kwargs={'id': self.object.publicacion.id})
+        detalle_url = reverse('apps.publicaciones:publicacion_detalle', kwargs={'id': self.object.publicacion.id})
         return detalle_url
     
     def get_context_data(self):
@@ -47,5 +47,5 @@ class EliminarComentario(LoginRequiredMixin,DeleteView):
     context_object_name = 'comentario'
 
     def get_success_url(self):
-        detalle_url = reverse('apps.publicaciones:detalle_publicacion', kwargs={'id': self.object.disco.id})
+        detalle_url = reverse('apps.publicaciones:publicacion_detalle', kwargs={'id': self.object.publicacion.id})
         return detalle_url

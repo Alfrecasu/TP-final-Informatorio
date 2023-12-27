@@ -58,9 +58,9 @@
                         <li class="list-group-item">Agregado por: {{p.colaborador}}</li>
                     </ul>
                     <div class="card-body">
-                        <a href="{% url 'apps.publicaciones:detalle_publicacion' p.pk %}" class="btn btn-primary"
+                        <a href="{% url 'apps.publicaciones:publicacion_detalle' p.pk %}" class="btn btn-primary"
                             style="font-size: small;">Leer más</a>
-                    </div>
+                    </div>                    
                 </div>
             </div>
             {% endfor %}

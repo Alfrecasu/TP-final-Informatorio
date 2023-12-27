@@ -17,7 +17,7 @@
                 <p>Seguro que desea eliminar el comentario?</p>
                 <input class="btn btn-outline-secondary" type="submit" value="Si, eliminar" />
             </form>
-            <a href="{% url 'apps.publicaciones:detalle_publicacion' comentario.publicacion.id %}" class="btn btn-primary"
+            <a href="{% url 'apps.publicaciones:publicacion_detalle' comentario.publicacion.id %}" class="btn btn-primary"
                 style="font-size: small;">No, volver.</a>
         </div>
     </div>

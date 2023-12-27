@@ -1,10 +1,9 @@
 from django.shortcuts import render
+from django.urls import reverse_lazy
 from django.views.generic import CreateView, UpdateView, DeleteView
-
+from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Usuarios
 from .forms import RegistrarUsuariosForm
-from django.urls import reverse_lazy
-from django.contrib.auth.mixins import LoginRequiredMixin
 
 # Create your views here.
 class RegistrarUsuario(CreateView):
@@ -21,7 +20,7 @@ class ActualizarUsuario(LoginRequiredMixin,UpdateView):
 
 class EliminarUsuario(LoginRequiredMixin,DeleteView):
     model = Usuarios
-    template_name = 'publicaciones/confirma_eliminar.html'
+    template_name = 'publicaciones/confirmar_eliminar.html'
     success_url = reverse_lazy('apps.usuarios:listar_usuarios')
 
 def listar_usuarios(request):
