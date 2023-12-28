@@ -15,6 +15,7 @@ class Categoria(models.Model):
 class Publicaciones(models.Model):
     titulo = models.CharField(max_length=100, null=False)
     subtitulo = models.CharField(max_length=100, null=True, blank=True)
+    texto = models.TextField()
     fecha = models.DateTimeField(default=timezone.now, blank = True)
     texto = models.TextField(null = False)
     activo = models.BooleanField(default=True)

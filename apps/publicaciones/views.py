@@ -91,7 +91,7 @@ def listar_por_categoria(request, categoria):
     categorias = Categoria.objects.all()
     template_name = 'publicaciones/listar_publicacion.html'
     contexto = {
-        'publicacion' : publicaciones,
+        'publicaciones' : publicaciones,
         'categorias' : categorias,
     }
     return render(request,template_name,contexto)
@@ -111,7 +111,7 @@ def ordenar_por(request):
     categorias = Categoria.objects.all()
     template_name = 'publicaciones/listar_publicacion.html'
     contexto = {
-        'publicacion' : publicacion,
+        'publicaciones' : publicacion,
         'categorias' : categorias,
     }
     return render(request, template_name, contexto)
